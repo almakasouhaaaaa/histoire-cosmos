@@ -6,7 +6,7 @@
 <title>Notre histoire — Cosmos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;800&display=swap" rel="stylesheet">
 <style>
 
 :root{
@@ -46,6 +46,42 @@ img{max-width:100%;display:block;}
   padding:0 32px;
 }
 
+/* ===================== ANIMATIONS & REVEALS ===================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delays pour les grilles d'éléments */
+.pilier:nth-child(1) { transition-delay: 0.1s; }
+.pilier:nth-child(2) { transition-delay: 0.25s; }
+.pilier:nth-child(3) { transition-delay: 0.4s; }
+
+.r-item:nth-child(1) { transition-delay: 0.1s; }
+.r-item:nth-child(2) { transition-delay: 0.2s; }
+.r-item:nth-child(3) { transition-delay: 0.3s; }
+.r-item:nth-child(4) { transition-delay: 0.4s; }
+
+/* Animation d'introduction immédiate pour le Hero */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ===================== HERO ===================== */
 
 .hero{
@@ -62,24 +98,31 @@ img{max-width:100%;display:block;}
   font-size:12.5px;
   letter-spacing:0.16em;
   text-transform:uppercase;
-  color:var(--ink-soft);
+  color:var(--bleu);
   margin-bottom:34px;
-  font-weight:500;
+  font-weight:600;
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: 0.15s;
 }
 .hero-eyebrow span{
-  width:5px;height:5px;border-radius:50%;
-  background:var(--orange);
+  width:6px;height:6px;border-radius:50%;
+  background:var(--jaune);
   display:inline-block;
 }
 
 .hero h1{
   font-family:var(--font-display);
-  font-weight:500;
+  font-weight:800;
   font-size:clamp(38px,6.4vw,68px);
   line-height:1.12;
+  text-transform: uppercase;
   letter-spacing:-0.01em;
   max-width:760px;
   margin:0 auto;
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: 0.3s;
 }
 .hero h1 em{
  color:var(--jaune);
@@ -87,11 +130,14 @@ img{max-width:100%;display:block;}
 }
 
 .hero-sub{
-  max-width:460px;
+  max-width:580px;
   margin:28px auto 0;
-  font-size:16.5px;
+  font-size:18px;
   line-height:1.65;
-  color:var(--ink-soft);
+  color:rgba(255, 255, 255, 0.85);
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: 0.45s;
 }
 
 .hero-tags{
@@ -100,12 +146,20 @@ img{max-width:100%;display:block;}
   gap:10px;
   margin-top:44px;
   flex-wrap:wrap;
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  animation-delay: 0.6s;
 }
 .hero-tag{
  background:rgba(255,255,255,0.08);
  border:1px solid rgba(255,255,255,0.2);
  color:white;
  font-weight:600;
+ padding:8px 18px;
+ border-radius:4px;
+ font-size:14px;
+ text-transform: uppercase;
+ letter-spacing: 0.05em;
 }
 
 .hero-photo{
@@ -124,82 +178,70 @@ img{max-width:100%;display:block;}
   display:flex;
   align-items:center;
   gap:12px;
-  font-size:12px;
-  font-weight:600;
+  font-size:13px;
+  font-weight:700;
   letter-spacing:0.13em;
   text-transform:uppercase;
-  color:var(--orange-deep);
+  color:var(--vert2);
   margin-bottom:30px;
 }
 .eyebrow-row::before{
   content:"";
-  width:24px;height:1px;
-  background:var(--orange);
+  width:24px;height:2px;
+  background:var(--vert2);
 }
-.eyebrow-row.sage{color:var(--sage-deep);}
-.eyebrow-row.sage::before{background:var(--sage);}
 .eyebrow-row.center{justify-content:center;}
+.eyebrow-row.center::before{display:none;}
 
-.constat-grid{
-  display:grid;
-  grid-template-columns:0.95fr 1fr;
-  gap:60px;
-  align-items:start;
-}
-
-.constat h2{
-  font-family:var(--font-display);
-  font-weight:500;
-  font-size:clamp(26px,3.4vw,36px);
-  line-height:1.28;
-  letter-spacing:-0.005em;
-}
-.constat h2 em{
-  font-style:italic;
-  font-weight:400;
-  color:var(--sage-deep);
+.constat-body{
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .constat-body p{
-  font-size:15.5px;
+  font-size:16.5px;
   line-height:1.8;
   color:var(--ink-soft);
-  margin-bottom:18px;
+  margin-bottom:20px;
+}
+.constat-body p:last-child {
+  margin-bottom: 0;
 }
 .constat-body strong{
   color:var(--ink);
-  font-weight:600;
+  font-weight:700;
 }
 
 .piliers{
-  margin-top:64px;
+  margin-top:84px;
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  border-top:1px solid var(--line);
+  border-top:2px solid var(--line);
 }
 
 .pilier{
-  padding:30px 24px 0;
+  padding:40px 24px 0;
   border-right:1px solid var(--line);
+  transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 .pilier:last-child{border-right:none;}
 .pilier-tag{
   font-family:var(--font-display);
-  font-style:italic;
-  font-size:14px;
-  color:var(--orange-deep);
-  margin-bottom:16px;
+  font-weight:800;
+  font-size:24px;
+  color:var(--bleu);
+  margin-bottom:12px;
 }
-.pilier:nth-child(2) .pilier-tag{color:var(--sage-deep);}
-.pilier:nth-child(3) .pilier-tag{color:var(--berry-deep);}
 .pilier h3{
   font-family:var(--font-body);
-  font-weight:600;
-  font-size:16px;
-  margin-bottom:10px;
+  font-weight:800;
+  text-transform: uppercase;
+  font-size:18px;
+  margin-bottom:12px;
+  letter-spacing: 0.05em;
 }
 .pilier p{
-  font-size:14px;
+  font-size:15px;
   line-height:1.65;
   color:var(--ink-soft);
 }
@@ -219,16 +261,16 @@ img{max-width:100%;display:block;}
 }
 .timeline-head h2{
   font-family:var(--font-display);
-  font-weight:500;
-  font-size:clamp(28px,4.2vw,44px);
-  line-height:1.18;
-  max-width:660px;
+  font-weight:800;
+  text-transform: uppercase;
+  font-size:clamp(32px,5vw,54px);
+  line-height:1.1;
+  max-width:720px;
   margin:0 auto;
 }
 .timeline-head h2 em{
-  font-style:italic;
-  font-weight:400;
-  color:var(--orange-deep);
+  font-style:normal;
+  color:var(--vert2);
 }
 
 .timeline{
@@ -242,60 +284,88 @@ img{max-width:100%;display:block;}
   left:50%;
   top:4px;
   bottom:4px;
-  width:1px;
+  width:2px;
   background:var(--line);
-  transform:translateX(-0.5px);
+  transform:translateX(-50%);
 }
 
-.tl-item{
-  position:relative;
-  display:grid;
-  grid-template-columns:1fr 48px 1fr;
-  align-items:start;
-  opacity:0;
-  transform:translateY(22px);
-  transition:opacity 0.65s ease, transform 0.65s ease;
+.tl-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 48px 1fr;
+  align-items: start;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform;
 }
-.tl-item.in-view{opacity:1;transform:translateY(0);}
+
+/* Effet de slide directionnel selon la parité */
+@media (min-width: 861px) {
+  .tl-item:nth-child(odd) {
+    transform: translateX(-40px);
+  }
+  .tl-item:nth-child(even) {
+    transform: translateX(40px);
+  }
+}
+@media (max-width: 860px) {
+  .tl-item {
+    transform: translateY(30px);
+  }
+}
+
+.tl-item.in-view {
+  opacity: 1;
+  transform: translate(0) !important;
+}
 
 .tl-card{
-  padding:8px 30px;
-  margin:34px 0;
+  padding:20px 30px;
+  margin:20px 0;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  transition: box-shadow 0.3s ease;
 }
+.tl-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 76, 62, 0.05);
+}
+
 .tl-item:nth-child(odd) .tl-card{grid-column:1;justify-self:end;text-align:right;}
 .tl-item:nth-child(even) .tl-card{grid-column:3;justify-self:start;text-align:left;}
 
 .tl-year{
   font-family:var(--font-display);
-  font-weight:500;
-  font-style:italic;
-  font-size:22px;
-  color:var(--orange-deep);
-  margin-bottom:14px;
+  font-weight:800;
+  font-size:36px;
+  color:var(--vert1);
+  margin-bottom:8px;
 }
-.tl-item:nth-child(even) .tl-year{color:var(--sage-deep);}
-.tl-item:nth-child(3) .tl-year{color:var(--berry-deep);}
+.tl-item:nth-child(even) .tl-year{color:var(--vert2);}
 
 .tl-card h3{
   font-family:var(--font-body);
-  font-weight:600;
-  font-size:17.5px;
+  font-weight:800;
+  text-transform: uppercase;
+  font-size:18px;
   margin-bottom:12px;
   line-height:1.35;
   color:var(--ink);
+  letter-spacing: 0.03em;
 }
 
 .tl-card p{
-  font-size:14.5px;
-  line-height:1.75;
+  font-size:15px;
+  line-height:1.7;
   color:var(--ink-soft);
 }
-.tl-card ul{list-style:none;margin-top:6px;}
+.tl-card ul{list-style:none;margin-top:12px;text-align: left;}
+.tl-item:nth-child(odd) .tl-card ul { display: inline-block; text-align: right; }
 .tl-card li{
   font-size:14.5px;
   line-height:1.7;
   color:var(--ink-soft);
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 .tl-card li strong{color:var(--ink);font-weight:600;}
 
@@ -303,48 +373,53 @@ img{max-width:100%;display:block;}
   grid-column:2;
   display:flex;
   justify-content:center;
-  padding-top:44px;
+  padding-top:34px;
 }
 .tl-node{
-  width:9px;height:9px;
+  width:16px;height:16px;
   border-radius:50%;
-  background:var(--orange);
-  border:4px solid var(--bg);
-  box-shadow:0 0 0 1px var(--line);
+  background:var(--jaune);
+  border:4px solid var(--vert1);
+  box-shadow:0 0 0 2px var(--line);
   position:relative;
   z-index:2;
-  transition:transform 0.45s ease;
+  transform: scale(0);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition-delay: 0.2s;
 }
-.tl-item.in-view .tl-node{transform:scale(1.3);}
-.tl-item:nth-child(even) .tl-node{background:var(--sage);}
-.tl-item:nth-child(3) .tl-node{background:var(--berry);}
+.tl-item:nth-child(even) .tl-node{background:var(--bleu); border-color: var(--vert2);}
+
+.tl-item.in-view .tl-node {
+  transform: scale(1.15);
+}
 
 .tl-final{
   text-align:center;
   margin-top:84px;
   padding-top:60px;
-  border-top:1px solid var(--line);
+  border-top:2px solid var(--line);
 }
 .tl-final blockquote{
   font-family:var(--font-display);
-  font-style:italic;
-  font-weight:400;
-  font-size:clamp(19px,2.6vw,25px);
+  font-weight:500;
+  font-size:clamp(18px,2.5vw,22px);
   line-height:1.6;
-  max-width:680px;
+  max-width:760px;
   margin:0 auto;
   color:var(--ink);
 }
 .tl-final blockquote .name{
   font-style:normal;
-  font-weight:600;
-  color:var(--orange-deep);
+  font-weight:800;
+  color:var(--vert2);
 }
 
 /* ===================== REASSURANCE ===================== */
 
 .reassurance{
-  padding:80px 0;
+  padding:60px 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
 }
 .reassurance-grid{
   display:grid;
@@ -358,20 +433,19 @@ img{max-width:100%;display:block;}
 .r-item:last-child{border-right:none;}
 .r-mark{
   font-family:var(--font-display);
-  font-style:italic;
-  font-size:17px;
-  color:var(--orange-deep);
-  margin-bottom:14px;
+  font-weight:800;
+  font-size:24px;
+  color:var(--vert1);
+  margin-bottom:8px;
 }
-.r-item:nth-child(2) .r-mark{color:var(--sage-deep);}
-.r-item:nth-child(3) .r-mark{color:var(--berry-deep);}
 .r-item h4{
-  font-size:14px;
-  font-weight:600;
+  font-size:15px;
+  font-weight:700;
+  text-transform: uppercase;
   margin-bottom:6px;
 }
 .r-item p{
-  font-size:12.5px;
+  font-size:13px;
   color:var(--ink-soft);
   line-height:1.5;
 }
@@ -379,45 +453,46 @@ img{max-width:100%;display:block;}
 /* ===================== CTA ===================== */
 
 .cta{
-  padding:110px 0 130px;
+  padding:100px 0;
   text-align:center;
+  background: var(--jaune);
 }
 .cta h2{
-font-family:var(--font-display);
-font-weight:800;
-text-transform:uppercase;
-letter-spacing:-0.03em;
-  font-size:clamp(28px,4.2vw,42px);
-  line-height:1.18;
+  font-family:var(--font-display);
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:-0.02em;
+  font-size:clamp(32px,5vw,52px);
+  line-height:1.1;
   max-width:560px;
-  margin:0 auto 22px;
+  margin:0 auto 16px;
+  color: var(--vert1);
 }
-.cta h2 em{font-style:italic;font-weight:400;color:var(--orange-deep);}
 .cta p{
-  font-size:15.5px;
-  color:var(--ink-soft);
-  max-width:420px;
-  margin:0 auto 36px;
+  font-size:18px;
+  color:var(--ink);
+  max-width:460px;
+  margin:0 auto 32px;
   line-height:1.6;
 }
 .cta-btn{
   display:inline-flex;
   align-items:center;
-  gap:10px;
-  background:var(--ink);
-  color:var(--white);
-  padding:16px 34px;
-  border-radius:30px;
-  font-weight:500;
-  font-size:14px;
-  transition:background 0.25s ease, transform 0.25s ease;
+  background:var(--vert1);
+  color:var(--jaune);
+  padding:18px 40px;
+  border-radius:0px; /* Style brut Cosmos */
+  font-weight:700;
+  font-size:16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background 0.25s ease, transform 0.25s ease;
 }
-.cta-btn:hover{background:var(--orange-deep);transform:translateY(-2px);}
+.cta-btn:hover{background:var(--black); color: white; transform:translateY(-2px);}
 
 /* ===================== RESPONSIVE ===================== */
 
 @media (max-width:860px){
-  .constat-grid{grid-template-columns:1fr;gap:34px;}
   .piliers{grid-template-columns:1fr;}
   .pilier{border-right:none;border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:24px;}
   .pilier:last-child{border-bottom:none;margin-bottom:0;}
@@ -437,17 +512,6 @@ letter-spacing:-0.03em;
   }
   .timeline-spine{left:15px;}
 }
-
-@media (max-width:600px){
-  .wrap{padding:0 20px;}
-  .hero{padding:100px 0 60px;}
-  .constat,.timeline-section,.cta,.reassurance{padding:70px 0;}
-  .hero-tags{gap:8px;}
-}
-
-@media (prefers-reduced-motion: reduce){
-  .tl-item{transition:none;opacity:1;transform:none;}
-}
 </style>
 </head>
 <body>
@@ -455,44 +519,40 @@ letter-spacing:-0.03em;
 <section class="hero">
   <div class="wrap">
     <p class="hero-eyebrow"><span></span>Notre histoire<span></span></p>
-    <h1>Inverser la tendance, <em>un shot à la fois.</em></h1>
-    <p class="hero-sub">D'une cuisine à la première usine automatisée de shots bio en France : l'histoire d'une conviction simple devenue une véritable filière.</p>
+    <h1>Notre histoire
+    <p class="hero-sub">D'une cuisine à la première entreprise de shots bio en France : l'histoire d'une conviction simple devenue un succès.</p>
     <div class="hero-tags">
       <span class="hero-tag">Bio &amp; certifié</span>
-      <span class="hero-tag">Fabriqué en Provence</span>
+      <span class="hero-tag">Fabriqué en France</span>
       <span class="hero-tag">Vu sur M6</span>
     </div>
   </div>
-  <div class="wrap"><div class="hero-photo"></div></div>
 </section>
 
-<section class="constat">
+<section class="constat reveal">
   <div class="wrap">
     <p class="eyebrow-row">Le constat</p>
-    <div class="constat-grid">
-      <h2>Trop d'eau, trop de sucre, <em>pas assez d'essentiel.</em></h2>
-      <div class="constat-body">
-        <p>Tout commence avec <strong>Léo Ravillion</strong>. Travaillant dans l'univers de l'alimentation biologique, il est profondément marqué par les enjeux environnementaux et le respect de la biodiversité.</p>
-        <p>Grand amateur de boissons, il fait pourtant un constat simple : la majorité des produits sur le marché sont composés d'un immense pourcentage d'eau, de beaucoup de sucre, et de très peu d'ingrédients réellement intéressants pour la santé.</p>
-        <p>C'est là que naît son ambition : <strong>inverser la tendance</strong>. Pourquoi ne pas réduire l'eau et le sucre pour proposer un format ultra-concentré en matières premières de haute qualité ? Le concept du shot était né.</p>
-      </div>
+    <div class="constat-body">
+      <p>Tout commence avec <strong>Léo Ravillion</strong>. Travaillant dans l'univers de l'alimentation biologique, il est profondément marqué par les enjeux environnementaux et le respect de la biodiversité.</p>
+      <p>Grand amateur de boissons, il fait pourtant un constat simple : la majorité des produits sur le marché sont composés d'un immense pourcentage d'eau, de beaucoup de sucre, et de très peu d'ingrédients réellement intéressants pour la santé.</p>
+      <p>C'est là que naît son ambition : <strong>inverser la tendance</strong>. Pourquoi ne pas réduire l'eau et le sucre pour proposer un format ultra-concentré en matières premières de haute qualité ? Le concept du shot était né, avec trois valeurs clés :</p>
     </div>
 
     <div class="piliers">
-      <div class="pilier">
+      <div class="pilier reveal">
         <p class="pilier-tag">01</p>
         <h3>Le goût</h3>
-        <p>Un vrai plaisir en bouche grâce à des recettes travaillées.</p>
+        <p>Un vrai plaisir en bouche grâce à des recettes travaillées et testées.</p>
       </div>
-      <div class="pilier">
+      <div class="pilier reveal">
         <p class="pilier-tag">02</p>
         <h3>L'efficacité</h3>
-        <p>Des bénéfices santé réels et sans compromis — énergie, immunité.</p>
+        <p>Des bénéfices pour la santé réels, approuvés et sans compromis.</p>
       </div>
-      <div class="pilier">
+      <div class="pilier reveal">
         <p class="pilier-tag">03</p>
         <h3>L'engagement</h3>
-        <p>Des produits bio et éco-responsables, de la matière première jusqu'à la bouteille en verre.</p>
+        <p>Des produits bio, peu transformés et éco-responsables, de la matière première jusqu'à la bouteille en verre.</p>
       </div>
     </div>
   </div>
@@ -500,9 +560,9 @@ letter-spacing:-0.03em;
 
 <section class="timeline-section">
   <div class="wrap">
-    <div class="timeline-head">
-      <p class="eyebrow-row center">Les grandes étapes</p>
-      <h2>D'une idée de cuisine à une <em>filière française.</em></h2>
+    <div class="timeline-head reveal">
+      <p class="eyebrow-row center"></p>
+      <h2>Les grandes étapes de Cosmos.</em></h2>
     </div>
 
     <div class="timeline">
@@ -512,8 +572,7 @@ letter-spacing:-0.03em;
         <div class="tl-card">
           <p class="tl-year">2016</p>
           <h3>De la cuisine aux premiers défis</h3>
-          <p>Léo commence à formuler ses premières recettes directement dans sa cuisine. Pour passer à l'échelle supérieure, il démarche les industriels de la boisson : aucun n'est équipé pour conditionner ce format de mini-bouteilles ultra-concentrées. Les shots n'existent pas encore en France.</p>
-          <p style="margin-top:10px;">Léo décide alors de créer sa propre structure, de concevoir des machines sur mesure et d'entamer 4 ans de R&D, soutenus par la French Tech.</p>
+          <p>Léo commence à formuler ses premières recettes directement dans sa cuisine. Pour passer à l'échelle supérieure, il démarche les industriels de la boisson mais aucun n'est équipé pour conditionner les formats shots. Léo décide alors de créer sa propre structure, de concevoir des machines sur mesure et d'entamer 4 ans de recherche et développement (un travail d'innovation d'ailleurs soutenu par la French Tech).</p>
         </div>
         <div class="tl-node-col"><div class="tl-node"></div></div>
       </div>
@@ -521,10 +580,10 @@ letter-spacing:-0.03em;
       <div class="tl-item">
         <div class="tl-card">
           <p class="tl-year">2020</p>
-          <h3>Le grand lancement face à la crise</h3>
+          <h3>Le grand lancement</h3>
           <ul>
-            <li><strong>Été 2020 :</strong> après des mois de retard liés au Covid-19, les premiers shots sortent enfin et s'implantent dans des coffee-shops, restaurants et salles de sport.</li>
-            <li><strong>Octobre 2020 :</strong> fermeture administrative de tous ces établissements. Le chiffre d'affaires tombe à zéro. L'équipe choisit de pivoter et repart en R&D pour concevoir une version 2, plus stable, adaptée aux réseaux bio.</li>
+            <li><strong>Été 2020 :</strong> Après des mois de retard liés au Covid-19, les premiers shots sortent enfin et s'implantent dans des coffee-shops, restaurants et salles de sport.</li>
+            <li><strong>Octobre 2020 :</strong> Fermeture administrative des points de vente par l'État. Au lieu d'abandonner, l'équipe choisit de pivoter : elle repart en R&D pour concevoir une autre version du produit, plus stable et parfaitement adaptée aux exigences des réseaux de magasins bio.</li>
           </ul>
         </div>
         <div class="tl-node-col"><div class="tl-node"></div></div>
@@ -534,11 +593,7 @@ letter-spacing:-0.03em;
         <div class="tl-card">
           <p class="tl-year">2021 – 2022</p>
           <h3>Les pionniers du réseau bio</h3>
-          <p>Le travail paie. En tant que premiers fabricants et pionniers du shot en France, Cosmos séduit rapidement la distribution spécialisée.</p>
-          <ul>
-            <li><strong>2021 :</strong> entrée chez So.bio et Bio c'Bon.</li>
-            <li><strong>2022 :</strong> arrivée sur les étagères de Naturalia.</li>
-          </ul>
+          <p>Cosmos s'impose comme le premier fabricant de shots en France. Les produits intègrent les enseignes nationales de référence : So.bio et Bio c'Bon en 2021, suivis de Naturalia en 2022.</p>
         </div>
         <div class="tl-node-col"><div class="tl-node"></div></div>
       </div>
@@ -546,9 +601,8 @@ letter-spacing:-0.03em;
       <div class="tl-item">
         <div class="tl-card">
           <p class="tl-year">2023</p>
-          <h3>L'indépendance industrielle</h3>
-          <p>La marque passe un cap majeur en ouvrant sa propre usine de production en France, intégrant une ligne de fabrication entièrement automatique. Le réseau Biocoop intègre les produits dans la foulée.</p>
-          <p style="margin-top:10px;">Les volumes décollent : les shots se vendent désormais par millions.</p>
+          <h3>Création de l'usine et montée du succès</h3>
+          <p>Création de l'usine automatisée de la marque à Marseille pour maîtriser la fabrication. Les shots intègrent le réseau Biocoop et se vendent désormais par millions.</p>
         </div>
         <div class="tl-node-col"><div class="tl-node"></div></div>
       </div>
@@ -556,13 +610,13 @@ letter-spacing:-0.03em;
       <div class="tl-item">
         <div class="tl-card">
           <p class="tl-year">2025</p>
-          <h3>La mise en lumière nationale</h3>
-          <p>Après des années de développement rigoureux pour obtenir le produit parfait, Cosmos décide de se faire connaître du grand public.</p>
-          <p style="margin-top:10px;">En mars 2025, Léo participe à <strong>« Qui veut être mon associé ? »</strong> sur M6 face à plus de 2 millions de téléspectateurs, et intègre un nouvel associé pour structurer cette forte croissance.</p>
+          <h3>Le passage à la télévision</h3>
+          <p>Après des années de développement rigoureux pour obtenir le produit parfait, Cosmos décide de se faire connaître du grand public. En mars 2025, Léo participe à l’émission « Qui veut être mon associé ? » sur M6 face à plus de 2 millions de téléspectateurs, permettant d'intégrer un nouvel associé pour structurer cette forte croissance.</p>
         </div>
         <div class="tl-node-col"><div class="tl-node"></div></div>
       </div>
 
+      <!-- 2026 -->
       <div class="tl-item">
         <div class="tl-card">
           <p class="tl-year">2026</p>
@@ -571,10 +625,11 @@ letter-spacing:-0.03em;
         </div>
         <div class="tl-node-col"><div class="tl-node"></div></div>
       </div>
+
     </div>
 
-    <div class="tl-final">
-      <blockquote>Si Cosmos est aujourd'hui le pionnier incontesté du shot en France, c'est avant tout grâce à la persévérance de <span class="name">Léo</span>. Face aux refus techniques des industriels et à une crise sanitaire mondiale, il a maintenu son cap pour transformer une idée de cuisine en une véritable filière de production française.</blockquote>
+    <div class="tl-final reveal">
+      <blockquote>Si Cosmos est aujourd'hui le pionnier incontesté du shot en France, c'est avant tout grâce à la persévérance de Léo. Il a su transformer une idée en une véritable ligne de produits qui explose sur le marché.</blockquote>
     </div>
   </div>
 </section>
@@ -582,48 +637,58 @@ letter-spacing:-0.03em;
 <section class="reassurance">
   <div class="wrap">
     <div class="reassurance-grid">
-      <div class="r-item">
+      <div class="r-item reveal">
         <p class="r-mark">FR</p>
         <h4>Fabrication locale</h4>
-        <p>Dans nos ateliers à Marseille</p>
+        <p>Dans notre propre usine marseillaise</p>
       </div>
-      <div class="r-item">
-        <p class="r-mark">50€</p>
-        <h4>Livraison offerte</h4>
-        <p>Dès 50€ d'achat en France</p>
+      <div class="r-item reveal">
+        <p class="r-mark">BIO</p>
+        <h4>100% Bio</h4>
+        <p>Certifié et sourcé de manière éco-responsable</p>
       </div>
-      <div class="r-item">
+      <div class="r-item reveal">
         <p class="r-mark">✓</p>
-        <h4>Paiement sécurisé</h4>
-        <p>CB, PayPal, Apple Pay & co.</p>
+        <h4>Efficacité pure</h4>
+        <p>Des bénéfices ciblés et validés scientifiquement</p>
       </div>
-      <div class="r-item">
-        <p class="r-mark">04</p>
-        <h4>Une question ?</h4>
-        <p>04 91 94 28 93 — de 9h à 18h</p>
+      <div class="r-item reveal">
+        <p class="r-mark">01</p>
+        <h4>Pionnier</h4>
+        <p>Le tout premier créateur de shots en France</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="cta">
+<section class="cta reveal">
   <div class="wrap">
-    <h2>Goûtez à <em>l'essentiel.</em></h2>
+    <h2>Goûtez à l'essentiel.</h2>
     <p>Le concentré de matières premières de haute qualité, dans chaque bouteille.</p>
-    <a href="https://www.cosmos.bio/collections/all" class="cta-btn">Découvrir nos shots →</a>
+    <a href="#" class="cta-btn">Découvrir nos shots →</a>
   </div>
 </section>
 
 <script>
-const items = document.querySelectorAll('.tl-item');
-const obs = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('in-view');
+// Sélection de tous les éléments à animer
+const animateElements = document.querySelectorAll('.reveal, .tl-item');
+
+// Configuration de l'observateur d'intersection
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      // On arrête d'observer une fois l'élément apparu pour optimiser les performances
+      obs.unobserve(entry.target);
     }
   });
-},{threshold:0.25});
-items.forEach(i=>obs.observe(i));
+}, {
+  threshold: 0.12, // Déclenche un peu avant que l'élément entier soit visible
+  rootMargin: "0px 0px -40px 0px"
+});
+
+// Activation de l'observation sur chaque élément
+animateElements.forEach(el => obs.observe(el));
 </script>
 
 </body>
