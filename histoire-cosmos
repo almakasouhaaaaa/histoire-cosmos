@@ -519,7 +519,7 @@ img{max-width:100%;display:block;}
 <section class="hero">
   <div class="wrap">
     <p class="hero-eyebrow"><span></span>Notre histoire<span></span></p>
-    <h1>Notre histoire
+    <h1>Notre histoire</h1>
     <p class="hero-sub">D'une cuisine à la première entreprise de shots bio en France : l'histoire d'une conviction simple devenue un succès.</p>
     <div class="hero-tags">
       <span class="hero-tag">Bio &amp; certifié</span>
@@ -562,7 +562,7 @@ img{max-width:100%;display:block;}
   <div class="wrap">
     <div class="timeline-head reveal">
       <p class="eyebrow-row center"></p>
-      <h2>Les grandes étapes de Cosmos.</em></h2>
+      <h2>Les grandes étapes de Cosmos</h2>
     </div>
 
     <div class="timeline">
